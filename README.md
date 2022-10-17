@@ -62,7 +62,7 @@
 ## 要求四：SQL Aggregate Functions
 
 - 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 )。
-  `SELECT COUNT(*) FROM member ;`
+- `SELECT COUNT(*) FROM member ;`
 
   ![desc](./count.png)
 
