@@ -15,7 +15,7 @@
 
    ![desc](./desc.png)
 
-### 要求三：SQL CRUD
+## 要求三：SQL CRUD
 
 利⽤要求⼆建立的資料庫和資料表，寫出能夠滿⾜以下要求的 SQL 指令：
 
@@ -59,7 +59,7 @@
 
   ![desc](./updateName.png)
 
-### 要求四：SQL Aggregate Functions
+## 要求四：SQL Aggregate Functions
 
 - 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 )。
   `SELECT COUNT(*) FROM member ;`
