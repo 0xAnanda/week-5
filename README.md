@@ -1,4 +1,3 @@
-# week-5
 # Assignment - Week 5
 
 ### 要求⼀：安裝 MySQL 伺服器
