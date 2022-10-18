@@ -1,13 +1,13 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: website
+-- Host: localhost    Database: website
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `name` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `follower_count` int unsigned NOT NULL DEFAULT '0',
-  `time` datetime NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,8 +39,37 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'Test','test2','test',111,'2022-10-17 16:42:00'),(2,'Mike','mike','mike',222,'2022-10-17 16:43:00'),(3,'John','john','john',666,'2022-10-17 16:44:00'),(4,'Wilson','wilson','wilson',888,'2022-10-17 16:45:00');
+INSERT INTO `member` VALUES (1,'Test','test','test',111,'2022-10-18 14:21:35'),(2,'Mike','mike','mike',222,'2022-10-18 14:21:35'),(3,'John','john','john',666,'2022-10-18 14:21:35'),(4,'Wilson','wilson','wilson',888,'2022-10-18 14:21:35');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `member_id` bigint NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `like_count` int unsigned NOT NULL DEFAULT '0',
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (1,4,'like',99,'2022-10-18 11:19:55'),(2,2,'good',66,'2022-10-18 11:20:21'),(3,4,'wow',88,'2022-10-18 11:20:29'),(4,3,'hmm',11,'2022-10-18 11:20:43'),(5,1,'cool',77,'2022-10-18 11:21:00'),(6,1,'oh no',44,'2022-10-18 11:21:17'),(7,2,'sh*t',55,'2022-10-18 11:21:37'),(8,3,'wtf',33,'2022-10-18 11:21:49');
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-17 18:30:49
+-- Dump completed on 2022-10-18 14:25:34
