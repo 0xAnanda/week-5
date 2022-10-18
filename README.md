@@ -1,8 +1,8 @@
 # Assignment - Week 5
 
-## 要求⼀：安裝 MySQL 伺服器
+### 要求⼀：安裝 MySQL 伺服器
 
-## 要求⼆：建立資料庫和資料表
+### 要求⼆：建立資料庫和資料表
 
 1. 建立⼀個新的資料庫，取名字為 website 。
 
@@ -15,7 +15,7 @@
 
    ![desc](./desc.png)
 
-## 要求三：SQL CRUD
+### 要求三：SQL CRUD
 
 利⽤要求⼆建立的資料庫和資料表，寫出能夠滿⾜以下要求的 SQL 指令：
 
@@ -59,10 +59,11 @@
 
   ![desc](./updateName.png)
 
-## 要求四：SQL Aggregate Functions
+### 要求四：SQL Aggregate Functions
 
 - 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 )。
-- `SELECT COUNT(*) FROM member ;`
+
+  `SELECT COUNT(*) FROM member ;`
 
   ![desc](./count.png)
 
@@ -79,3 +80,28 @@
   ![desc](./avg.png)
 
   ![desc](./end.png)
+
+### 要求五：SQL JOIN (Optional)
+
+#### 1. 在資料庫中，建立新資料表紀錄留⾔資訊，取名字為 message 。資料表中必須包含以下欄位設定：
+
+![desc](Q5.png)
+
+`CREATE TABLE message (id BIGINT PRIMARY KEY AUTO_INCREMENT,member_id BIGINT NOT NULL, content VARCHAR(255) NOT NULL, like_count INT_UNSIGNED NOT NULL DEFAULT 0, time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , FOREIGN KEY(member_id) REFERENCES member(id));`
+
+![desc](./desc2.png)
+
+- 使⽤ SELECT 搭配 JOIN 語法，取得所有留⾔，結果須包含留⾔者會員的姓名。
+
+  `SELECT * FROM member INNER JOIN message ON member.id = message.member_id;`
+  ![desc](./innerJoin.png)
+
+- 使⽤ SELECT 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留⾔，資料中須包含留⾔者會員的姓名。
+
+  `SELECT * FROM member INNER JOIN message ON member.id = message.member_id WHERE username='test';`
+  ![desc](./5-2.png)
+
+- 使⽤ SELECT、SQL Aggregate Functions 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留⾔平均按讚數。
+
+  `SELECT AVG(like_count) FROM member INNER JOIN message ON member.id= message_id WHERE username = 'test`;
+  ![desc](./5-3.png)
