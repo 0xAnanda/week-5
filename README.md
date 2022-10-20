@@ -105,3 +105,31 @@
 
   `SELECT AVG(like_count) FROM member INNER JOIN message ON member.id= message_id WHERE username = 'test`;
   ![desc](./5-3.png)
+
+![desc](extra.png)
+
+### 我們不只要記錄留言按讚的數量，還要紀錄每一個留言的按讚會員是誰，支援以下使用場合：
+
+- 可以根據留言編號取得該留言有哪些會員按讚。
+
+`CREATE TABLE content_like( message_id BIGINT, member_id BIGINT, PRIMARY KEY (message_id, member_id), foreign key(message_id) REFERENCE message(id) ON DELETE CASCADE );`
+
+`ALTER TABLE content_like ADD FOREIGN KEY(member_id) REFERENCES member(id);`
+
+`INSERT INTO content_like(message_id, member_id) VALUES(2, 1);`
+
+`INSERT INTO content_like(message_id, member_id) VALUES(2, 2);`
+
+`INSERT INTO content_like(message_id, member_id) VALUES(2, 4);`
+
+`SELECT message_id FROM content_like WHERE message_id = 2;`
+![desc](./creat%206.png)
+![desc](./append.png)
+
+- 會員若是嘗試對留言按讚：要能先檢查是否曾經按過讚，然後才將按讚的數量 +1 並且記錄按讚的會員是誰。
+
+檢查是誰按了第二則留言，抓出姓名
+![desc](./append.png)
+
+計算某一則訊息的按讚數量
+![desc](./countLike.png)
