@@ -133,3 +133,5 @@
 
 計算某一則訊息的按讚數量
 ![desc](./countLike.png)
+
+![desc](./result.png)
